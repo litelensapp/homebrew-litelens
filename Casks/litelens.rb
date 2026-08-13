@@ -1,6 +1,6 @@
 cask "litelens" do
-  version "0.0.0"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  version "1.3.1"
+  sha256 "77c8171b467048f1d5264353af10658bf648e3d434f584f0ece4b6171f30a8bc"
 
   url "https://github.com/litelensapp/litelens/releases/download/v#{version}/litelens-darwin-arm64.zip"
   name "LiteLens"
@@ -18,7 +18,7 @@ cask "litelens" do
       System Settings > Privacy & Security and click "Open Anyway" next to LiteLens.
 
       LiteLens has a built-in self-updater that Homebrew is not aware of. If you
-      installed via Homebrew, prefer `brew upgrade litelens` to keep versions in sync.
+      installed via Homebrew, prefer  to keep versions in sync.
     EOS
   end
 
