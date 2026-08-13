@@ -1,6 +1,6 @@
 cask "litelens" do
-  version "1.4.5"
-  sha256 "7a3fd3fc4d16708a68b2d6758621e14ba51822e471951f4687ced3fa6df71890"
+  version "1.4.6"
+  sha256 "44c4de43bf504010273a266b283647ba1fd3200242f009f2c78796d52ebd5978"
 
   url "https://github.com/litelensapp/litelens/releases/download/v#{version}/litelens-darwin-arm64.zip"
   name "LiteLens"
