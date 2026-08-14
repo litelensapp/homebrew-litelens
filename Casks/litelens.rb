@@ -1,6 +1,6 @@
 cask "litelens" do
-  version "1.5.0"
-  sha256 "b1ecd916faf7b39e86707c77d6b046e5d76ef233ae71cc8efca1f58f8f730610"
+  version "1.5.1"
+  sha256 "57cb72a8f48c5dfe19f34a6d8138b3aac46ded69be961b16226f5c1659fd14a4"
 
   url "https://github.com/litelensapp/litelens/releases/download/v#{version}/litelens-darwin-arm64.zip"
   name "LiteLens"
@@ -36,7 +36,7 @@ cask "litelens" do
       To upgrade, run:
         brew update && brew upgrade litelens
 
-       refreshes Homebrew's local tap cache;  alone
+      `brew update` refreshes Homebrew's local tap cache; `brew upgrade` alone
       may report "already installed" if that cache is stale.
     EOS
   end
