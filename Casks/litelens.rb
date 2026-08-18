@@ -1,9 +1,9 @@
 cask "litelens" do
-  version "1.6.4"
-  sha256 "d7614bedf8c9318bb29110a97c50aca2debdd6004ee6c1cf1a8a0865d5d2f65e"
+  version "1.6.6"
+  sha256 "59f91ba9522a84b8e50df48b03c70081f4376d3971207763370878fdd61f1e07"
 
   url "https://github.com/litelensapp/litelens/releases/download/v#{version}/litelens-darwin-arm64.zip"
-  name "LiteLens"
+  name "Litelens"
   desc "Lightweight Kubernetes desktop dashboard"
   homepage "https://github.com/litelensapp/litelens"
 
@@ -26,13 +26,13 @@ cask "litelens" do
 
   caveats do
     <<~EOS
-      LiteLens is ad-hoc signed, not notarized. This cask strips the
+      Litelens is ad-hoc signed, not notarized. This cask strips the
       quarantine attribute and re-signs the app after install so
       Gatekeeper won't block it. If macOS still shows a warning on
       first launch, open System Settings > Privacy & Security and
-      click "Open Anyway" next to LiteLens.
+      click "Open Anyway" next to Litelens.
 
-      LiteLens's built-in self-updater is disabled for Homebrew installs.
+      Litelens's built-in self-updater is disabled for Homebrew installs.
       To upgrade, run:
         brew update && brew upgrade litelens
 
