@@ -1,6 +1,6 @@
 cask "litelens" do
-  version "1.7.13"
-  sha256 "2d6a563c86e196f20e2256b0f05ade98b9ce55e04e66e923751286c862c93a33"
+  version "1.7.14"
+  sha256 "a6efa6a4e3b8aba474f2df0260010e0e28994437f08848c21f36cf3c2b03e06a"
 
   url "https://github.com/litelensapp/litelens/releases/download/v#{version}/litelens-darwin-arm64.zip"
   name "Litelens"
@@ -22,7 +22,22 @@ cask "litelens" do
     system_command "/usr/bin/codesign",
                     args: ["--force", "--deep", "--sign", "-", "#{appdir}/litelens.app"],
                     sudo: false
+
+    # Record that this install came from Homebrew, so the app's own
+    # runtime detection (which can be fooled by app translocation or
+    # a  binary missing from a GUI process's PATH) doesn't have
+    # to guess. Read by internal/storage.ReadInstallSource, which
+    # internal/updater.DetectInstallSource consults before falling
+    # back to its own heuristics. Reruns (upgrade/reinstall) simply
+    # overwrite this with the same value.
+    litelens_dir = "#{Dir.home}/.litelens"
+    FileUtils.mkdir_p(litelens_dir)
+    File.write("#{litelens_dir}/install-source", "homebrew")
   end
+
+  uninstall trash: [
+    "~/.litelens/install-source",
+  ]
 
   caveats do
     <<~EOS
