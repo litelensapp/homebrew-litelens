@@ -1,6 +1,6 @@
 cask "litelens" do
-  version "1.10.8"
-  sha256 "7cfb99076830c4f2abc8eea5e9c313cf60eab953b1347c1b5dac431e15ced47f"
+  version "1.10.9"
+  sha256 "746d6ef2fd15a27058d558aced446311db8543148669e1bb6b6b7e772d3e0955"
 
   url "https://github.com/litelensapp/litelens/releases/download/v#{version}/litelens-darwin-arm64.zip"
   name "Litelens"
@@ -11,17 +11,14 @@ cask "litelens" do
 
   depends_on arch: :arm64
 
-  postflight do
+  postflight_steps do
     # The app is ad-hoc signed, not notarized. Homebrew preserves the
     # com.apple.quarantine xattr on extraction, which makes Gatekeeper
     # refuse to open it at all (no "Open Anyway" override). Strip
     # quarantine and re-sign ad-hoc, mirroring scripts/install.sh.
-    system_command "/usr/bin/xattr",
-                    args: ["-cr", "#{appdir}/litelens.app"],
-                    sudo: false
-    system_command "/usr/bin/codesign",
-                    args: ["--force", "--deep", "--sign", "-", "#{appdir}/litelens.app"],
-                    sudo: false
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/litelens.app"]
+    run "/usr/bin/codesign",
+        args: ["--force", "--deep", "--sign", "-", "{{appdir}}/litelens.app"]
 
     # Record that this install came from Homebrew, so the app's own
     # runtime detection (which can be fooled by app translocation or
@@ -30,9 +27,8 @@ cask "litelens" do
     # internal/updater.DetectInstallSource consults before falling
     # back to its own heuristics. Reruns (upgrade/reinstall) simply
     # overwrite this with the same value.
-    litelens_dir = "#{Dir.home}/.litelens"
-    FileUtils.mkdir_p(litelens_dir)
-    File.write("#{litelens_dir}/install-source", "homebrew")
+    mkdir_p ".litelens", base: :home
+    write_file ".litelens/install-source", "homebrew", base: :home
   end
 
   uninstall trash: [
